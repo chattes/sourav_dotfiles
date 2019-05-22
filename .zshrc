@@ -72,7 +72,7 @@ plugins=(
   git
   zsh-autosuggestions
   node
-	zsh-z 
+	zsh-z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -106,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
-source ~/.fonts/*.sh
 
 alias "news"="newsboat"
 alias "gmail"="neomutt"
@@ -140,6 +139,3 @@ source $ZSH/oh-my-zsh.sh
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-
-
