@@ -3,10 +3,12 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export ANDROID_HOME=/home/sourav/Library/Android/sdk
+# export ANDROID_HOME=/home/sourav/Library/Android/sdk
+export ANDROID_HOME=/Users/sourav/Library/Android/sdk
 export PATH=$PATH:~/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
-export JAVA_HOME='/home/sourav/Android/android-studio/jre'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home'
+# export JAVA_HOME='/home/sourav/Android/android-studio/jre'
 
 
 
