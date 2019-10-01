@@ -17,7 +17,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 if has('nvim')
 				Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 				Plug 'Shougo/denite.nvim'
-				" Plug 'Shougo/deoplete.nvim'
 else
 				Plug 'Shougo/deoplete.nvim'
 				Plug 'roxma/nvim-yarp'
@@ -77,9 +76,9 @@ Plug 'mileszs/ack.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'xolox/vim-notes'
 Plug 'mhinz/vim-mix-format'
-Plug 'fielding/vim-chunkwm-navigator'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 " To map <Esc> to exit terminal-mode:
@@ -89,10 +88,6 @@ if has('nvim')
     set inccommand=split
 endif
 tnoremap ii <C-\><C-n>
-tnoremap <C-w><C-h> <C-\><C-N><C-w>h
-tnoremap <C-w><C-j> <C-\><C-N><C-w>j
-tnoremap <C-w><C-k> <C-\><C-N><C-w>k
-tnoremap <C-w><C-l> <C-\><C-N><C-w>l
 
 filetype plugin indent on    " required
 " colo Tomorrow-Night-Eighties
@@ -108,10 +103,16 @@ set tabstop=2
 "Key Maps
 imap <C-c> <CR><Esc>O
 imap ii <Esc>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+
 set backspace=indent,eol,start
 "
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -129,6 +130,12 @@ let wiki_2.ext = '.md'
 let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:rustfmt_autosave = 1
+
+set hidden
+let g:racer_cmd = "/home/souravchatterjee/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+
 
 
 

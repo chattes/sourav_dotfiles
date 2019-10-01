@@ -1,23 +1,21 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/sourav/.oh-my-zsh"
+export ZSH="/home/souravchatterjee/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
-# source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+export TERM="xterm-256color"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon user host newline dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage load)
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
@@ -94,7 +92,8 @@ POWERLEVEL9K_HOST_LOCAL_FOREGROUND='white'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-completions)
+plugins=(git zsh-autosuggestions zsh-completions extract colorize docker docker-compose gem bundler cargo)
+autoload -U compinit && compinit
 
 
 source $ZSH/oh-my-zsh.sh
@@ -126,9 +125,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-	[[ -s /home/sourav/.autojump/etc/profile.d/autojump.sh ]] && source /home/sourav/.autojump/etc/profile.d/autojump.sh
+
+	[[ -s /home/souravchatterjee/.autojump/etc/profile.d/autojump.sh ]] && source /home/souravchatterjee/.autojump/etc/profile.d/autojump.sh
 
 	autoload -U compinit && compinit -u
+
+
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
@@ -142,3 +144,6 @@ alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
 export PATH=~/bin:$PATH
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval $(thefuck --alias)
