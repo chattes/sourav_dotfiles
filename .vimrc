@@ -16,7 +16,6 @@ set completeopt=longest,menuone
 call plug#begin('~/.local/share/nvim/plugged')
 if has('nvim')
 				Plug 'Shougo/denite.nvim'
-				" Plug 'Shougo/deoplete.nvim'
 else
 				Plug 'roxma/nvim-yarp'
 				Plug 'roxma/vim-hug-neovim-rpc'
@@ -75,6 +74,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'xolox/vim-notes'
 Plug 'mhinz/vim-mix-format'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 " To map <Esc> to exit terminal-mode:
@@ -123,6 +124,13 @@ let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:rustfmt_autosave = 1
+
+set hidden
+let g:racer_cmd = "/home/souravchatterjee/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+
 
 
 
