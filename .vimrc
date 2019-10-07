@@ -15,14 +15,14 @@ filetype off                  " required
 set completeopt=longest,menuone
 call plug#begin('~/.local/share/nvim/plugged')
 if has('nvim')
-				Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 				Plug 'Shougo/denite.nvim'
 				" Plug 'Shougo/deoplete.nvim'
 else
-				Plug 'Shougo/deoplete.nvim'
 				Plug 'roxma/nvim-yarp'
 				Plug 'roxma/vim-hug-neovim-rpc'
 endif
+" Use release branch
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'rizzatti/dash.vim'
 Plug 'KabbAmine/zeavim.vim'
@@ -30,7 +30,6 @@ Plug 'mtth/scratch.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'dhruvasagar/vim-zoom'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
@@ -42,11 +41,9 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'gavocanov/vim-js-indent'
-Plug 'Sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'epilande/vim-react-snippets'
 Plug 'gmarik/ingretu'
-Plug 'ervandew/supertab'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -77,7 +74,6 @@ Plug 'mileszs/ack.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'xolox/vim-notes'
 Plug 'mhinz/vim-mix-format'
-Plug 'fielding/vim-chunkwm-navigator'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 call plug#end()
 let g:deoplete#enable_at_startup = 1
@@ -88,10 +84,14 @@ if has('nvim')
     set inccommand=split
 endif
 tnoremap ii <C-\><C-n>
-tnoremap <C-w><C-h> <C-\><C-N><C-w>h
-tnoremap <C-w><C-j> <C-\><C-N><C-w>j
-tnoremap <C-w><C-k> <C-\><C-N><C-w>k
-tnoremap <C-w><C-l> <C-\><C-N><C-w>l
+
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 filetype plugin indent on    " required
 " colo Tomorrow-Night-Eighties
@@ -107,10 +107,6 @@ set tabstop=2
 "Key Maps
 imap <C-c> <CR><Esc>O
 imap ii <Esc>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 set backspace=indent,eol,start
 "
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -130,17 +126,27 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 
 
 
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
 let g:UltiSnipsSnippetDirectories=['~/.local/share/nvim/plugged/vim-snippets/UltiSnips', 'UltiSnips']
 let g:used_javascript_libs='underscore,ramda,react,jquery'
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 "Auto Close YCMD Hints and Semantics
 let g:jsx_ext_required = 0
 let g:nerdtree_tabs_open_on_console_startup=0
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:ale_sign_error = '>' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 1 " Less distracting when opening a new file

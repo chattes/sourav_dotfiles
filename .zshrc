@@ -9,6 +9,7 @@ export PATH=$PATH:~/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home'
 # export JAVA_HOME='/home/sourav/Android/android-studio/jre'
+export TERM="xterm-256color"
 
 
 
