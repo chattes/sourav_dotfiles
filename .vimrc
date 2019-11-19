@@ -28,13 +28,10 @@ Plug 'KabbAmine/zeavim.vim'
 Plug 'mtth/scratch.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'nightsense/vim-crunchbang'
-Plug 'tomasr/molokai'
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -46,7 +43,6 @@ Plug 'gmarik/ingretu'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'altercation/vim-colors-solarized'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'flazz/vim-colorschemes'
@@ -57,14 +53,12 @@ Plug 'tpope/vim-surround'
 Plug 'mxw/vim-jsx'
 Plug 'plasticboy/vim-markdown'
 Plug 'groenewege/vim-less'
-Plug 'xolox/vim-easytags'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-endwise'
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-editors/vim-elixir'
-Plug 'Valloric/MatchTagAlways'
 Plug 'alvan/vim-closetag'
 Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -76,6 +70,7 @@ Plug 'mhinz/vim-mix-format'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
+Plug 'morhetz/gruvbox'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 " To map <Esc> to exit terminal-mode:
@@ -88,6 +83,8 @@ tnoremap ii <C-\><C-n>
 
 
 let g:tmux_navigator_no_mappings = 1
+let g:NERDTreeIgnore = ['^node_modules$']
+colorscheme gruvbox
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
@@ -95,11 +92,8 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 filetype plugin indent on    " required
-" colo Tomorrow-Night-Eighties
 syntax on
 set background=dark
-colorscheme palenight
-" colorscheme solarized
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 set nohlsearch
@@ -110,8 +104,6 @@ imap <C-c> <CR><Esc>O
 imap ii <Esc>
 set backspace=indent,eol,start
 "
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 " make YCM compatible with UltiSnips (using supertab)
 " VIM WIKI SETUP
 let wiki_1 = {}
@@ -130,8 +122,6 @@ set hidden
 let g:racer_cmd = "/home/souravchatterjee/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
-
-
 
 
 
@@ -171,18 +161,11 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit'
       \ }
 
-" denite file search (c-p uses gitignore, c-o looks at everything)
-" map <C-P> :DeniteProjectDir -buffer-name=git -direction=top file_rec/git<CR>
-" map <C-O> :DeniteProjectDir -buffer-name=files -direction=top file_rec<CR>
 
-" -u flag to unrestrict (see ag docs)
-" denite content search
-" map <C-p><C-s> :DeniteProjectDir -buffer-name=grep -default-action=quickfix grep:::!<CR>
 nnoremap <c-p> :FZF<cr>
 nnoremap <c-p><c-b> :Buffers<cr>
 " nnoremap <c-p><c-s> :Ack <C-R><C-W><CR>
 nnoremap <c-p><c-s> :Ag <C-R><C-W><CR>
-nnoremap <c-p><c-d> :Dash <C-R><C-W><CR>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 command! -bang -nargs=* Ag
@@ -197,16 +180,44 @@ let g:syntastic_always_populate_loc_list = 1
 " Emmet Configuration
 let g:user_emmet_leader_key='<C-E>'
 
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 let g:user_emmet_settings = {
 												\  'javascript.jsx' : {
 												\      'extends' : 'jsx',
 												\  },
 												\}
 let g:syntastic_javascript_checkers = ['eslint']
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['prettier-eslint', 'eslint']}
-let g:ale_enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma --bracket-spacing --jsx-bracket-same-line'
+" let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['prettier-eslint', 'eslint']}
+" let g:ale_enabled = 1
+" let g:ale_fix_on_save = 1
+" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma --bracket-spacing --jsx-bracket-same-line'
 " Match tag types
 let g:mta_filetypes = {
 												\ 'html' : 1,
@@ -234,6 +245,9 @@ let g:closetag_shortcut = '>'
 "Elixir Tage Stack
 let g:alchemist_tag_stack_map = '<C-T><C-A>'
 
+
+" always show signcolumns
+set signcolumn=yes
 let g:mix_format_on_save = 1
 
 "Script to autoclose NERDTree side pane
