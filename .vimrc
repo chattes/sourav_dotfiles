@@ -71,6 +71,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'morhetz/gruvbox'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 " To map <Esc> to exit terminal-mode:
@@ -80,6 +83,7 @@ if has('nvim')
     set inccommand=split
 endif
 tnoremap ii <C-\><C-n>
+
 
 
 let g:tmux_navigator_no_mappings = 1
@@ -154,6 +158,8 @@ let g:mkdp_refresh_slow = 1
 "Nerdtree Shortcut mapping
 map <silent> <C-t> :NERDTreeToggle<ENTER>
 map <silent> <C-e> :Errors
+let g:NERDTreeGitStatusWithFlags = 1
+
 "FZF Settings
 "
 let g:fzf_action = {
@@ -180,6 +186,7 @@ let g:syntastic_always_populate_loc_list = 1
 " Emmet Configuration
 let g:user_emmet_leader_key='<C-E>'
 
+" COC Settings
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -196,6 +203,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ ]
 
+
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
