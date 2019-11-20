@@ -5,7 +5,10 @@ set wildignore+=*/node_modules/*
 set tags=tags
 set colorcolumn=80
 set textwidth=80
-set nofoldenable
+set cindent
+set tabstop=2
+set shiftwidth=2
+
 let mapleader = ","
 " set autochdir
 filetype off                  " required
@@ -153,8 +156,6 @@ let g:ale_sign_error = '>' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 1 " Less distracting when opening a new file
 let g:mkdp_refresh_slow = 1
-"Tag completion
-:iabbrev </ </<C-X><C-O>
 "Nerdtree Shortcut mapping
 map <silent> <C-t> :NERDTreeToggle<ENTER>
 map <silent> <C-e> :Errors
@@ -170,7 +171,6 @@ let g:fzf_action = {
 
 nnoremap <c-p> :FZF<cr>
 nnoremap <c-p><c-b> :Buffers<cr>
-" nnoremap <c-p><c-s> :Ack <C-R><C-W><CR>
 nnoremap <c-p><c-s> :Ag <C-R><C-W><CR>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -203,7 +203,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ ]
 
-
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
