@@ -17,14 +17,9 @@ filetype off                  " required
 "set rtp+=$HOME/Vundle/vimfiles/bundle/ctrlp.vim
 set completeopt=longest,menuone
 call plug#begin('~/.local/share/nvim/plugged')
-if has('nvim')
-				Plug 'Shougo/denite.nvim'
-else
-				Plug 'roxma/nvim-yarp'
-				Plug 'roxma/vim-hug-neovim-rpc'
-endif
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'rizzatti/dash.vim'
 Plug 'KabbAmine/zeavim.vim'
@@ -40,8 +35,6 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'gavocanov/vim-js-indent'
-Plug 'honza/vim-snippets'
-Plug 'epilande/vim-react-snippets'
 Plug 'gmarik/ingretu'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
@@ -146,7 +139,6 @@ function! s:check_back_space() abort
 endfunction
 
 
-let g:UltiSnipsSnippetDirectories=['~/.local/share/nvim/plugged/vim-snippets/UltiSnips', 'UltiSnips']
 let g:used_javascript_libs='underscore,ramda,react,jquery'
 "Auto Close YCMD Hints and Semantics
 let g:jsx_ext_required = 0
@@ -195,13 +187,13 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
+	\ 'coc-snippets',
   \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
+	\ 'coc-tsserver',
+	\ 'coc-eslint',
+	\ 'coc-prettier',
+	\ 'coc-json',
+	\ ]
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
