@@ -157,7 +157,9 @@ alias logprod2="frontmprod2.sh"
 alias up="docker-compose up"
 alias down="docker-compose down"
 alias publishblog="gaa && gcmsg "Publish" && git push"
+alias ide="ide.sh"
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -169,3 +171,5 @@ source $ZSH/oh-my-zsh.sh
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export LC_ALL=en_US.UTF-8
