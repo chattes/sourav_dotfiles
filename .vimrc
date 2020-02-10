@@ -141,6 +141,8 @@ let g:used_javascript_libs='underscore,ramda,react,jquery'
 "Auto Close YCMD Hints and Semantics
 let g:jsx_ext_required = 0
 let g:nerdtree_tabs_open_on_console_startup=0
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 " better key bindings for UltiSnipsExpandTrigger
 let g:ale_sign_error = '>' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
