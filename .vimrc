@@ -20,6 +20,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
+Plug 'mlaursen/vim-react-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'rizzatti/dash.vim'
 Plug 'KabbAmine/zeavim.vim'
@@ -68,6 +69,10 @@ Plug 'morhetz/gruvbox'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'metakirby5/codi.vim'
+Plug 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 " To map <Esc> to exit terminal-mode:
@@ -136,6 +141,11 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+let g:codi#interpreters = {
+  \ 'javascript': {
+     \ 'rightalign': 0,
+  \ },
+\ }
 
 let g:used_javascript_libs='underscore,ramda,react,jquery'
 "Auto Close YCMD Hints and Semantics
@@ -233,6 +243,8 @@ let g:mta_filetypes = {
 "-----------------------------
 "
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 let g:notes_directories = ['~/Documents/Notes']
 " This will make the list of non-closing tags self-closing in the specified files.
@@ -243,7 +255,6 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
 " Shortcut for closing tags, default is '>'
 " "
-let g:closetag_shortcut = '>'
 "Elixir Tage Stack
 let g:alchemist_tag_stack_map = '<C-T><C-A>'
 
