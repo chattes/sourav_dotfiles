@@ -13,6 +13,7 @@ let mapleader = ","
 " set autochdir
 filetype off                  " required
 
+
 " set the runtime path to include Vundle and initialize
 "set rtp+=$HOME/Vundle/vimfiles/bundle/ctrlp.vim
 set completeopt=longest,menuone
