@@ -8,6 +8,8 @@ set textwidth=80
 set cindent
 set tabstop=2
 set shiftwidth=2
+set nobackup
+set noswapfile
 
 let mapleader = ","
 " set autochdir
@@ -73,6 +75,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'metakirby5/codi.vim'
 Plug 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'lifepillar/vim-solarized8'
 Plug 'hail2u/vim-css3-syntax'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
@@ -83,12 +86,11 @@ if has('nvim')
     set inccommand=split
 endif
 tnoremap ii <C-\><C-n>
-
-
-
 let g:tmux_navigator_no_mappings = 1
 let g:NERDTreeIgnore = ['^node_modules$']
-colorscheme gruvbox
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+set background=dark
+colorscheme wombat256dave
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
@@ -97,7 +99,6 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 filetype plugin indent on    " required
 syntax on
-set background=dark
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 set nohlsearch
@@ -155,7 +156,7 @@ let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " better key bindings for UltiSnipsExpandTrigger
-let g:ale_sign_error = '>' " Less aggressive than the default '>>'
+let g:ale_sign_error = '.' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 1 " Less distracting when opening a new file
 let g:mkdp_refresh_slow = 1
